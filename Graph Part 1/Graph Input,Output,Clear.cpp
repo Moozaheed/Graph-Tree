@@ -1,7 +1,7 @@
 //total array
 
 vector<int>adj[maxx];
-bool color[maxx];
+bool vis[maxx];
 //int level[maxx];
 
 
@@ -35,7 +35,7 @@ for(int i=0;i<node;i++)
 for(int i=0;i<node;i++)
 {
     adj[i].clear();
-    color[i]=0;
+    vis[i]=0;
     //level[i]=0;
 }
 

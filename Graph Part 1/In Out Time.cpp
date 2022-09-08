@@ -12,11 +12,11 @@ subtree of other node*/
 int timer=1;
 bool subtree(int v)
 {
-    color[v]=1;
+    vis[v]=1;
     in[v]=timer++;
     for(int child:adj[v])
     {
-        if(color[child]==0)subtree(child);
+        if(vis[child]==0)subtree(child);
     }
     out[v]=timer++;
 

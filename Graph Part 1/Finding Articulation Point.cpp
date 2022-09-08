@@ -5,21 +5,21 @@
 
 
 int in[maxx],low[maxx];
-bool color[maxx];
+bool vis[maxx];
 int timer=0;
 
 void dfs(int node, int p = -1) 
 {
 
 
-    color[node] = true;
+    vis[node] = true;
     in[node] = low[node] = timer++;
     int children=0;
     for (int child : adj[node]) 
     {
         if (child == p) continue;
 
-        if (color[child]) 
+        if (vis[child]) 
         {
             low[node] = min(low[node], in[child]);
         } 
