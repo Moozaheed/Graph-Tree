@@ -39,39 +39,51 @@ using namespace std;
 const double PI = acos(-1);
 ll int hp = 1e9+7;
 
-// Complexcity O(Alpha(n)) almost O(1)
-//Inverse Ackerman Function
 
+vector<vi>adj[maxx];
+bool vis[maxx];
+ll int dist[maxx];
 ll int parent[maxx];
-ll int size[maxx];
-bool ok;
-ll int find(ll int a)
-{
-    if(parent[a]==a)return a;
-    return parent[a]=find(parent[a]);
-}
+ll int cost;
+ll int node,edge;
 
-void unioon (ll int a, ll int b)
+void primsMST(int source)
 {
-    a = find(a);
-    b = find(b);
-    if (a != b)
+    for(int i=0;i<node;i++)
     {
-        if(size[a]<size[b])swap(a,b);
-        parent[b]=a;
-        size[a]+=size[b];
+        dist[i]=hp;
     }
-    else ok=true;
+    set<vi>s;
+
+    dist[source]=0;
+    s.insert({0,source});
+
+    while(!s.empty())
+    {
+        auto x=*(s.b());
+        s.erase(x);
+        vis[x[1]]=true;
+
+        ll int u=x[1];
+        ll int v=parent[x[1]];
+        ll int w=x[0];
+
+        cout<<u<<sp<<v<<sp<<w<<dl;
+        cost+=w;
+
+        for(auto it:adj[x[1]])
+        {
+            if(vis[it[0]])continue;
+            if(dist[it[0]]>it[1])
+            {
+                s.erase({dist[it[0]],it[0]});
+                dist[it[0]]=it[1];
+                s.insert({dist[it[0]],it[0]});
+                parent[it[0]]=x[1];
+            }
+        }
+    }
 }
-
-
-bool comp(vi x, vi y)
-{
-    if(x[2]<y[2]) return true;
-    return false;
-}
-
-
 
 
 
@@ -79,58 +91,19 @@ void Boom()
 {
     //Let's Move
 
-    ll int n,m;
-    cin>>n>>m;
 
-    for(ll int i=0;i<=maxx;i++)
+    cin>>node>>edge;
+    for(int i=0;i<edge;i++)
     {
-        parent[i]=i;
-        size[i]=1;
+        int n1,n2,cost;
+        cin>>n1>>n2>>cost;
+        adj[n1].push_back({n2,cost});
+        adj[n2].push_back({n1,cost});
     }
 
-    vector<vi>edges;
-
-    for(ll int i=0;i<m;i++)
-    {
-        ll int x,y,z;
-        cin>>x>>y>>z;
-        edges.pb({x,y,z});
-    }
-
-    sort(all(edges),comp);
-    
-    // for(auto x:edges)
-    // {
-    //     cerr<<x[0]<<sp<<x[1]<<dl;
-    // }
-
-    ll int cost=0;
-
-    for(auto i:edges)
-    {
-        ll int x=i[0];
-        ll int y=i[1];
-        ll int z=i[2];
-
-        ll int p=find(x);
-        ll int q=find(y);
-
-        if(p==q)continue;
-        else
-        {
-            cout<<x<<sp<<y<<dl;
-            cost+=z;
-            unioon(x,y);
-        }
-    }
-
-
+    primsMST(1);
 
     cout<<cost<<dl;
-
-
-
-
 
 
 
@@ -140,6 +113,8 @@ void Boom()
 
 int main()
 {
+
+
 
     Boost;
 
@@ -155,14 +130,10 @@ int main()
 }
 
 
-//Input: 
-// 8 9
-// 1 2 5
-// 2 3 6
-// 4 3 2
-// 1 4 9
-// 3 5 5
-// 5 6 10
-// 6 7 7
-// 7 8 1
-// 8 5 1
+// Input: 
+// 4 5
+// 0 1 10
+// 1 2 15
+// 0 2 5
+// 3 1 2
+// 3 2 40

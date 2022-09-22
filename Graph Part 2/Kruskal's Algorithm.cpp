@@ -39,8 +39,7 @@ using namespace std;
 const double PI = acos(-1);
 ll int hp = 1e9+7;
 
-// Complexcity O(Alpha(n)) almost O(1)
-//Inverse Ackerman Function
+// O(ElogV)
 
 ll int parent[maxx];
 ll int size[maxx];
