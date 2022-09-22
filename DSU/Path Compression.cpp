@@ -46,6 +46,9 @@ const double PI = acos(-1);
 ll int hp = 1e9+7;
 
 
+
+//  O(logn) Complexcity
+
 ll int parent[maxx];
 
 ll int find(ll int a) 
