@@ -40,7 +40,7 @@ const double PI = acos(-1);
 ll int hp = 1e9+7;
 
 
-vector<vi>adj[maxx];
+vector<pair<ll int,ll int>>adj[maxx];
 bool vis[maxx];
 ll int dist[maxx];
 ll int parent[maxx];
@@ -53,7 +53,7 @@ void primsMST(int source)
     {
         dist[i]=hp;
     }
-    set<vi>s;
+    set<pair<ll int,ll int>>s;
 
     dist[source]=0;
     s.insert({0,source});
@@ -62,24 +62,24 @@ void primsMST(int source)
     {
         auto x=*(s.b());
         s.erase(x);
-        vis[x[1]]=true;
+        vis[x.se]=true;
 
-        ll int u=x[1];
-        ll int v=parent[x[1]];
-        ll int w=x[0];
+        ll int u=x.se;
+        ll int v=parent[x.se];
+        ll int w=x.fi;
 
         cout<<u<<sp<<v<<sp<<w<<dl;
         cost+=w;
 
-        for(auto it:adj[x[1]])
+        for(auto it:adj[x.se])
         {
-            if(vis[it[0]])continue;
-            if(dist[it[0]]>it[1])
+            if(vis[it.fi])continue;
+            if(dist[it.fi]>it.se)
             {
-                s.erase({dist[it[0]],it[0]});
-                dist[it[0]]=it[1];
-                s.insert({dist[it[0]],it[0]});
-                parent[it[0]]=x[1];
+                s.erase({dist[it.fi],it.fi});
+                dist[it.fi]=it.se;
+                s.insert({dist[it.fi],it.fi});
+                parent[it.fi]=x.se;
             }
         }
     }
@@ -100,8 +100,9 @@ void Boom()
         adj[n1].push_back({n2,cost});
         adj[n2].push_back({n1,cost});
     }
+    
 
-    primsMST(1);
+   // primsMST(1);
 
     cout<<cost<<dl;
 
