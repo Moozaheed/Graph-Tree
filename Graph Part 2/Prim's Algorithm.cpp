@@ -49,7 +49,7 @@ ll int node,edge;
 
 void primsMST(int source)
 {
-    for(int i=0;i<node;i++)
+    for(int i=1;i<=node;i++)
     {
         dist[i]=hp;
     }
@@ -102,7 +102,7 @@ void Boom()
     }
     
 
-   // primsMST(1);
+    primsMST(1);
 
     cout<<cost<<dl;
 
@@ -114,8 +114,6 @@ void Boom()
 
 int main()
 {
-
-
 
     Boost;
 
