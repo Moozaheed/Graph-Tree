@@ -40,69 +40,12 @@ const double PI = acos(-1);
 ll int hp = 1e9+7;
 
 
-vector<int>adj[maxx];
-bool color[maxx];
-
-int in[maxx];
-vector<int>res;
-
-void kahn(int n)
-{
-    queue<int>q;
-    //first we push all the vertex whose indegree is zero
-    for(int i=1;i<=n;i++)
-    {
-        if(in[i]==0)q.push(i);
-    }
-
-    while(!q.empty())
-    {
-        int curr=q.front();
-        res.push_back(curr);
-        q.pop();
-
-        //degree komacchi and edge gula ke alada kortesi
-        for(int node :adj[curr])
-        {
-            in[node]--;
-
-            if(in[node]==0)
-            {
-                q.push(node);
-            }
-        }
-
-    }
-}
-
 
 void Boom()
 {
     //Let's Move
-    
-    //grp input
 
-int node,edge;
-cin>>node>>edge;
-for(int i=0;i<edge;i++)
-{
-    int n1,n2; //two nodes that colore connected with edge i.
-    cin>>n1>>n2;
-    //directed graph
-    adj[n1].push_back(n2);
-    in[n2]++;
-    
-}
 
-kahn(node);
-
-for(auto x:res)cout<<x<<sp;
-cout<<dl;
-
-    
-    
-
-      
 
 
 
@@ -111,10 +54,10 @@ cout<<dl;
 
 int main()
 {
-    Boost;
-    
 
-    int t=1;      //cin>>t;
+    Boost;
+
+    int t=1;     // cin>>t;
     for(int i=1;i<=t;i++)
     {
         //cout<<"Case "<<i<<" : ";
@@ -124,3 +67,4 @@ int main()
     return 0;
 
 }
+

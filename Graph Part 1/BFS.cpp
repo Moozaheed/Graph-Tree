@@ -3,6 +3,8 @@
 // vector < int >adj[maxx];
 // bool color[maxx];
 // int level[maxx];
+
+
 void bfs (int src)
 {
   queue < int >q;
