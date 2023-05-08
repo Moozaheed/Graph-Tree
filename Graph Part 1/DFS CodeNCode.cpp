@@ -151,7 +151,7 @@ int subtree(int node)
 	{
 		if(vis[child]==0)
 		{
-			curr_size=curr_size+subtree(child)
+			curr_size=curr_size+subtree(child);
 		}
 		subsize[node]=curr_size;
 		return curr_size;
